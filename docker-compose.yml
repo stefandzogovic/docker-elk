@@ -137,6 +137,7 @@ services:
       LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
   
   filebeat:
+    platform: linux/x86_64
     networks:
       - docker-elk
     build:

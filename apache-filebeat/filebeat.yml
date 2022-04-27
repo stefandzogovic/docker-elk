@@ -7,4 +7,6 @@ filebeat.inputs:
     apache: true
   fields_under_root: true
 output.logstash:
-  hosts: [http://localhost:5000]
+  username: filebeat_internal
+  password: password
+  hosts: [http://localhost:5044]

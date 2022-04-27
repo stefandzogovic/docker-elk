@@ -1,0 +1,10 @@
+filebeat.inputs:
+- type: log 
+  enabled: true 
+  paths: 
+      - /var/log/apache2/*.log
+  fields:
+    apache: true
+  fields_under_root: true
+output.logstash:
+  hosts: [http://localhost:5000]

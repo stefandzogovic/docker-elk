@@ -135,7 +135,16 @@ services:
       CONFIG_DIR: /usr/share/logstash/config
       LS_JAVA_OPTS: -Xmx256m -Xms256m
       LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
-
+  
+  filebeat:
+    networks:
+      - docker-elk
+    build:
+      context: ./apache-filebeat
+      dockerfile: Dockerfile
+    ports:
+      - "1234:80"
+    
 volumes:
   esdata01:
     driver: local

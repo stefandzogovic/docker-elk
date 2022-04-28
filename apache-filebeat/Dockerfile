@@ -6,12 +6,14 @@ ENV FILEBEAT_URL wget https://artifacts.elastic.co/downloads/beats/filebeat/file
 
 RUN apt-get update -y && apt-get install apache2 -y
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-COPY index.html /var/www/html/
+
+WORKDIR /var/www/html
+COPY index.html index.html
 
 RUN apt-get install wget && ${FILEBEAT_URL} && dpkg -i filebeat-${FILEBEAT_VERSION}-amd64.deb
 RUN rm filebeat-${FILEBEAT_VERSION}-amd64.deb
 
-RUN service filebeat start
+RUN apt install systemctl -y && systemctl enable filebeat && systemctl daemon-reload && systemctl start filebeat
 
 COPY filebeat.yml /etc/filebeat/
 CMD apachectl -D FOREGROUND

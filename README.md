@@ -7,7 +7,7 @@ Developed on:
 
 # How it Works
 
-Docker compose consists of 6 containers. Cluster of 3 ElasticSearch nodes with storage persistence. 1 Kibana container, 1 LogStash container, 1 container that runs Apache Web Server and FileBeat.
+Docker compose consists of 6 containers. Cluster of 3 ElasticSearch nodes with storage persistence. 1 Kibana container, 1 LogStash container, 1 Ubuntu container that runs Apache Web Server and FileBeat.
 FileBeat sends Apache's logs over to LogStash which are then forwarded to ES nodes.
 
 Give Kibana a few seconds to initialize, then access the Kibana web UI by hitting

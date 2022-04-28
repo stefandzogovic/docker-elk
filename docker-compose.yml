@@ -135,11 +135,21 @@ services:
       CONFIG_DIR: /usr/share/logstash/config
       LS_JAVA_OPTS: -Xmx256m -Xms256m
       LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s localhost:9600",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
   
   filebeat:
     platform: linux/x86_64
     depends_on:
-      - logstash
+      logstash:
+        condition: service_healthy
     networks:
       - docker-elk
     volumes:

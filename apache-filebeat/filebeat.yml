@@ -9,4 +9,4 @@ filebeat.inputs:
 output.logstash:
   username: filebeat_internal
   password: password
-  hosts: [localhost:5044]
+  hosts: ["logstash:5044"]

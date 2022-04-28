@@ -26,7 +26,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "curl -s http://localhost:9200 | grep -q 'missing authentication credentials'",
+          "curl -s http://localhost:9200",
         ]
       interval: 10s
       timeout: 10s
@@ -56,7 +56,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "curl -s ://localhost:9200",
+          "curl -s http://localhost:9200",
         ]
       interval: 10s
       timeout: 10s
@@ -138,8 +138,12 @@ services:
   
   filebeat:
     platform: linux/x86_64
+    depends_on:
+      - logstash
     networks:
       - docker-elk
+    volumes:
+      - filebeatdata:/var/log/apache2/
     build:
       context: ./apache-filebeat
       dockerfile: Dockerfile
@@ -156,6 +160,8 @@ volumes:
   kibanadata:
     driver: local
   logstashdata:
+    driver: local
+  filebeatdata:
     driver: local
 
 networks:

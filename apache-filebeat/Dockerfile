@@ -14,7 +14,8 @@ RUN apt-get install wget && ${FILEBEAT_URL} && dpkg -i filebeat-${FILEBEAT_VERSI
 RUN rm filebeat-${FILEBEAT_VERSION}-arm64.deb
 
 COPY filebeat.yml /etc/filebeat/
-RUN apt install systemctl -y && systemctl enable filebeat && systemctl daemon-reload && systemctl start filebeat
-
-CMD apachectl -D FOREGROUND
+# RUN apt install systemctl -y && systemctl enable filebeat && systemctl daemon-reload && systemctl start filebeat
+ADD docker-entrypoint.sh    /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+CMD ["/entrypoint.sh"]
 EXPOSE 80

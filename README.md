@@ -49,7 +49,6 @@ wget https://download.elastic.co/demos/kibana/gettingstarted/logs.jsonl.gz
 gunzip logs.jsonl.gz
 cat logs.jsonl | nc localhost 5000 -->
 ```
-
 By default, the stack exposes the following ports:
 * 9200: Elasticsearch HTTP
 * 1234: Apache2

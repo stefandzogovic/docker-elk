@@ -93,6 +93,13 @@ services:
       retries: 120
 
   kibana:
+    depends_on:
+      es01:
+        condition: service_healthy
+      es02:
+        condition: service_healthy
+      es03:
+        condition: service_healthy
     networks:
       - docker-elk
     image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
@@ -118,6 +125,13 @@ services:
   
   logstash:
     user: root
+    depends_on:
+      es01:
+        condition: service_healthy
+      es02:
+        condition: service_healthy
+      es03:
+        condition: service_healthy
     networks:
       - docker-elk
     image: docker.elastic.co/logstash/logstash:${STACK_VERSION}

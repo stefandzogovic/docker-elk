@@ -143,7 +143,6 @@ services:
       retries: 120
   
   filebeat:
-    platform: linux/x86_64
     depends_on:
       logstash:
         condition: service_healthy

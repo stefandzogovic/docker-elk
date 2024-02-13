@@ -1,6 +1,6 @@
 # ELK-Docker
 
-Run the latest version of the ELK (Elasticsearch, Logstash, Kibana, FileBeat) stack with Docker and Docker Compose.
+Run the latest version of the ELK (Elasticsearch, Logstash, Kibana, FileBeat) stack with Docker Compose.
 
 Developed on: 
 * Docker version 20.10.14
